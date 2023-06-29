@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Smerdova_PPModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DiplomaTable">
+          <Key>
+            <PropertyRef Name="IDEmployee" />
+          </Key>
+          <Property Name="IDEmployee" Type="int" Nullable="false" />
+          <Property Name="Series" Type="nvarchar(max)" />
+          <Property Name="Number" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateIssue" Type="date" Nullable="false" />
+          <Property Name="Speciality" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Institution" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Profile" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Education" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeTable">
+          <Key>
+            <PropertyRef Name="IDEmployee" />
+          </Key>
+          <Property Name="IDEmployee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar(max)" />
+          <Property Name="DateBirth" Type="date" Nullable="false" />
+          <Property Name="Snils" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Inn" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateEmployment" Type="date" Nullable="false" />
+          <Property Name="Number" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="LoginedTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PassportTable">
+          <Key>
+            <PropertyRef Name="IDEmployee" />
+          </Key>
+          <Property Name="IDEmployee" Type="int" Nullable="false" />
+          <Property Name="Series" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Number" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateIssue" Type="date" Nullable="false" />
+          <Property Name="DivisionCode" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Issued" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PlaceRegistration" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SickLeaveTable">
+          <Key>
+            <PropertyRef Name="IDSickLeave" />
+          </Key>
+          <Property Name="IDSickLeave" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDEmployee" Type="int" Nullable="false" />
+          <Property Name="Start" Type="date" Nullable="false" />
+          <Property Name="End" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DiplomaTable_EmployeeTable">
+          <End Role="EmployeeTable" Type="Self.EmployeeTable" Multiplicity="1" />
+          <End Role="DiplomaTable" Type="Self.DiplomaTable" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeTable">
+              <PropertyRef Name="IDEmployee" />
+            </Principal>
+            <Dependent Role="DiplomaTable">
+              <PropertyRef Name="IDEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PassportTable_EmployeeTable">
+          <End Role="EmployeeTable" Type="Self.EmployeeTable" Multiplicity="1" />
+          <End Role="PassportTable" Type="Self.PassportTable" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeTable">
+              <PropertyRef Name="IDEmployee" />
+            </Principal>
+            <Dependent Role="PassportTable">
+              <PropertyRef Name="IDEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SickLeaveTable_EmployeeTable">
+          <End Role="EmployeeTable" Type="Self.EmployeeTable" Multiplicity="1" />
+          <End Role="SickLeaveTable" Type="Self.SickLeaveTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeTable">
+              <PropertyRef Name="IDEmployee" />
+            </Principal>
+            <Dependent Role="SickLeaveTable">
+              <PropertyRef Name="IDEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_LoginedTable">
+          <End Role="LoginedTable" Type="Self.LoginedTable" Multiplicity="1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="LoginedTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Smerdova_PPModelContainer">
+          <EntitySet Name="DiplomaTable" EntityType="Self.DiplomaTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeTable" EntityType="Self.EmployeeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginedTable" EntityType="Self.LoginedTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PassportTable" EntityType="Self.PassportTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SickLeaveTable" EntityType="Self.SickLeaveTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DiplomaTable_EmployeeTable" Association="Self.FK_DiplomaTable_EmployeeTable">
+            <End Role="EmployeeTable" EntitySet="EmployeeTable" />
+            <End Role="DiplomaTable" EntitySet="DiplomaTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PassportTable_EmployeeTable" Association="Self.FK_PassportTable_EmployeeTable">
+            <End Role="EmployeeTable" EntitySet="EmployeeTable" />
+            <End Role="PassportTable" EntitySet="PassportTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SickLeaveTable_EmployeeTable" Association="Self.FK_SickLeaveTable_EmployeeTable">
+            <End Role="EmployeeTable" EntitySet="EmployeeTable" />
+            <End Role="SickLeaveTable" EntitySet="SickLeaveTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_LoginedTable" Association="Self.FK_UserTable_LoginedTable">
+            <End Role="LoginedTable" EntitySet="LoginedTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Smerdova_PPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Smerdova_PPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DiplomaTable" EntityType="Smerdova_PPModel.DiplomaTable" />
+          <EntitySet Name="EmployeeTable" EntityType="Smerdova_PPModel.EmployeeTable" />
+          <EntitySet Name="LoginedTable" EntityType="Smerdova_PPModel.LoginedTable" />
+          <EntitySet Name="PassportTable" EntityType="Smerdova_PPModel.PassportTable" />
+          <EntitySet Name="SickLeaveTable" EntityType="Smerdova_PPModel.SickLeaveTable" />
+          <EntitySet Name="UserTable" EntityType="Smerdova_PPModel.UserTable" />
+          <AssociationSet Name="FK_DiplomaTable_EmployeeTable" Association="Smerdova_PPModel.FK_DiplomaTable_EmployeeTable">
+            <End Role="EmployeeTable" EntitySet="EmployeeTable" />
+            <End Role="DiplomaTable" EntitySet="DiplomaTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PassportTable_EmployeeTable" Association="Smerdova_PPModel.FK_PassportTable_EmployeeTable">
+            <End Role="EmployeeTable" EntitySet="EmployeeTable" />
+            <End Role="PassportTable" EntitySet="PassportTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SickLeaveTable_EmployeeTable" Association="Smerdova_PPModel.FK_SickLeaveTable_EmployeeTable">
+            <End Role="EmployeeTable" EntitySet="EmployeeTable" />
+            <End Role="SickLeaveTable" EntitySet="SickLeaveTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_LoginedTable" Association="Smerdova_PPModel.FK_UserTable_LoginedTable">
+            <End Role="LoginedTable" EntitySet="LoginedTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DiplomaTable">
+          <Key>
+            <PropertyRef Name="IDEmployee" />
+          </Key>
+          <Property Name="IDEmployee" Type="Int32" Nullable="false" />
+          <Property Name="Series" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Number" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateIssue" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Speciality" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Institution" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Profile" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Education" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmployeeTable" Relationship="Smerdova_PPModel.FK_DiplomaTable_EmployeeTable" FromRole="DiplomaTable" ToRole="EmployeeTable" />
+        </EntityType>
+        <EntityType Name="EmployeeTable">
+          <Key>
+            <PropertyRef Name="IDEmployee" />
+          </Key>
+          <Property Name="IDEmployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Snils" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Inn" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateEmployment" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DiplomaTable" Relationship="Smerdova_PPModel.FK_DiplomaTable_EmployeeTable" FromRole="EmployeeTable" ToRole="DiplomaTable" />
+          <NavigationProperty Name="PassportTable" Relationship="Smerdova_PPModel.FK_PassportTable_EmployeeTable" FromRole="EmployeeTable" ToRole="PassportTable" />
+          <NavigationProperty Name="SickLeaveTable" Relationship="Smerdova_PPModel.FK_SickLeaveTable_EmployeeTable" FromRole="EmployeeTable" ToRole="SickLeaveTable" />
+        </EntityType>
+        <EntityType Name="LoginedTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserTable" Relationship="Smerdova_PPModel.FK_UserTable_LoginedTable" FromRole="LoginedTable" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="PassportTable">
+          <Key>
+            <PropertyRef Name="IDEmployee" />
+          </Key>
+          <Property Name="IDEmployee" Type="Int32" Nullable="false" />
+          <Property Name="Series" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Number" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateIssue" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DivisionCode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Issued" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PlaceRegistration" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmployeeTable" Relationship="Smerdova_PPModel.FK_PassportTable_EmployeeTable" FromRole="PassportTable" ToRole="EmployeeTable" />
+        </EntityType>
+        <EntityType Name="SickLeaveTable">
+          <Key>
+            <PropertyRef Name="IDSickLeave" />
+          </Key>
+          <Property Name="IDSickLeave" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDEmployee" Type="Int32" Nullable="false" />
+          <Property Name="Start" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="End" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="EmployeeTable" Relationship="Smerdova_PPModel.FK_SickLeaveTable_EmployeeTable" FromRole="SickLeaveTable" ToRole="EmployeeTable" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LoginedTable" Relationship="Smerdova_PPModel.FK_UserTable_LoginedTable" FromRole="UserTable" ToRole="LoginedTable" />
+        </EntityType>
+        <Association Name="FK_DiplomaTable_EmployeeTable">
+          <End Type="Smerdova_PPModel.EmployeeTable" Role="EmployeeTable" Multiplicity="1" />
+          <End Type="Smerdova_PPModel.DiplomaTable" Role="DiplomaTable" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeTable">
+              <PropertyRef Name="IDEmployee" />
+            </Principal>
+            <Dependent Role="DiplomaTable">
+              <PropertyRef Name="IDEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PassportTable_EmployeeTable">
+          <End Type="Smerdova_PPModel.EmployeeTable" Role="EmployeeTable" Multiplicity="1" />
+          <End Type="Smerdova_PPModel.PassportTable" Role="PassportTable" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeTable">
+              <PropertyRef Name="IDEmployee" />
+            </Principal>
+            <Dependent Role="PassportTable">
+              <PropertyRef Name="IDEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SickLeaveTable_EmployeeTable">
+          <End Type="Smerdova_PPModel.EmployeeTable" Role="EmployeeTable" Multiplicity="1" />
+          <End Type="Smerdova_PPModel.SickLeaveTable" Role="SickLeaveTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeTable">
+              <PropertyRef Name="IDEmployee" />
+            </Principal>
+            <Dependent Role="SickLeaveTable">
+              <PropertyRef Name="IDEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_LoginedTable">
+          <End Type="Smerdova_PPModel.LoginedTable" Role="LoginedTable" Multiplicity="1" />
+          <End Type="Smerdova_PPModel.UserTable" Role="UserTable" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="LoginedTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Smerdova_PPModelContainer" CdmEntityContainer="Smerdova_PPEntities">
+          <EntitySetMapping Name="DiplomaTable">
+            <EntityTypeMapping TypeName="Smerdova_PPModel.DiplomaTable">
+              <MappingFragment StoreEntitySet="DiplomaTable">
+                <ScalarProperty Name="Education" ColumnName="Education" />
+                <ScalarProperty Name="Profile" ColumnName="Profile" />
+                <ScalarProperty Name="Institution" ColumnName="Institution" />
+                <ScalarProperty Name="Speciality" ColumnName="Speciality" />
+                <ScalarProperty Name="DateIssue" ColumnName="DateIssue" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Series" ColumnName="Series" />
+                <ScalarProperty Name="IDEmployee" ColumnName="IDEmployee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeTable">
+            <EntityTypeMapping TypeName="Smerdova_PPModel.EmployeeTable">
+              <MappingFragment StoreEntitySet="EmployeeTable">
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="DateEmployment" ColumnName="DateEmployment" />
+                <ScalarProperty Name="Inn" ColumnName="Inn" />
+                <ScalarProperty Name="Snils" ColumnName="Snils" />
+                <ScalarProperty Name="DateBirth" ColumnName="DateBirth" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="IDEmployee" ColumnName="IDEmployee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginedTable">
+            <EntityTypeMapping TypeName="Smerdova_PPModel.LoginedTable">
+              <MappingFragment StoreEntitySet="LoginedTable">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PassportTable">
+            <EntityTypeMapping TypeName="Smerdova_PPModel.PassportTable">
+              <MappingFragment StoreEntitySet="PassportTable">
+                <ScalarProperty Name="PlaceRegistration" ColumnName="PlaceRegistration" />
+                <ScalarProperty Name="Issued" ColumnName="Issued" />
+                <ScalarProperty Name="DivisionCode" ColumnName="DivisionCode" />
+                <ScalarProperty Name="DateIssue" ColumnName="DateIssue" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Series" ColumnName="Series" />
+                <ScalarProperty Name="IDEmployee" ColumnName="IDEmployee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SickLeaveTable">
+            <EntityTypeMapping TypeName="Smerdova_PPModel.SickLeaveTable">
+              <MappingFragment StoreEntitySet="SickLeaveTable">
+                <ScalarProperty Name="End" ColumnName="End" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="IDEmployee" ColumnName="IDEmployee" />
+                <ScalarProperty Name="IDSickLeave" ColumnName="IDSickLeave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTable">
+            <EntityTypeMapping TypeName="Smerdova_PPModel.UserTable">
+              <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

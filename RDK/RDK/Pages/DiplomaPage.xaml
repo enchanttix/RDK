@@ -1,0 +1,40 @@
+﻿<Page x:Class="RDK.Pages.DiplomaPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RDK.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DiplomaPage">
+
+    <Grid>
+        <ScrollViewer>
+            <StackPanel>
+                <TextBlock FontFamily="Calibri" Foreground="#755040" FontWeight="Bold" FontSize="26" HorizontalAlignment="Center" Text="Диплом"/>
+                <GroupBox Margin="0,10,0,0" FontFamily="Calibri" FontSize="20" Width="500" BorderBrush="#755040" BorderThickness="3" Header="Серия">
+                    <TextBox Padding="2" Margin="5" Name="tbSeria"/>
+                </GroupBox>
+                <GroupBox Margin="0,10,0,0" FontFamily="Calibri" FontSize="20" Width="500" BorderBrush="#755040" BorderThickness="3" Header="Номер">
+                    <TextBox Padding="2" Margin="5" Name="tbNumber"/>
+                </GroupBox>
+                <GroupBox Margin="0,10,0,0" FontFamily="Calibri" FontSize="20" Width="500" BorderBrush="#755040" BorderThickness="3" Header="Дата выдачи">
+                    <DatePicker Padding="2" Margin="5" Name="tbDate"/>
+                </GroupBox>
+                <GroupBox Margin="0,10,0,0" FontFamily="Calibri" FontSize="20" Width="500" BorderBrush="#755040" BorderThickness="3" Header="Специальность">
+                    <TextBox Padding="2" Margin="5" Name="tbSpeciality"/>
+                </GroupBox>
+                <GroupBox Margin="0,10,0,0" FontFamily="Calibri" FontSize="20" Width="500" BorderBrush="#755040" BorderThickness="3" Header="Образовательное Учреждение">
+                    <TextBox Padding="2" Margin="5" Name="tbInstitution"/>
+                </GroupBox>
+                <GroupBox Margin="0,10,0,0" FontFamily="Calibri" FontSize="20" Width="500" BorderBrush="#755040" BorderThickness="3" Header="Профиль">
+                    <TextBox Padding="2" Margin="5" Name="tbProfile"/>
+                </GroupBox>
+                <GroupBox Margin="0,10,0,0" FontFamily="Calibri" FontSize="20" Width="500" BorderBrush="#755040" BorderThickness="3" Header="Образование">
+                    <TextBox Padding="2" Margin="5" Name="tbEducation"/>
+                </GroupBox>
+                <Button Click="btnSave_Click" Background="White" Padding="5" BorderBrush="#755040" BorderThickness="3" FontFamily="Calibri" FontSize="20" Margin="0,20,0,20" Name="btnSave" Width="160" Content="Добавить" Cursor="Hand"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

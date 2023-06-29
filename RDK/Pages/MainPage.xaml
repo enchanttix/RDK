@@ -1,0 +1,144 @@
+﻿<Page x:Class="RDK.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RDK.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0">
+            <Button Click="btnEnd_Click" Background="White" Padding="2" BorderBrush="#755040" BorderThickness="3" FontFamily="Calibri" FontSize="18" Name="btnEnd" Margin="10" Width="150" Content="Выход" Cursor="Hand"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0">
+            <Button Click="btnAddList_Click" Background="White" Padding="2" BorderBrush="#755040" BorderThickness="3" FontFamily="Calibri" FontSize="18" Name="btnAddList" Margin="10" Width="200" Content="Добавить больничный" Cursor="Hand"/>
+            <Button Click="btnAdd_Click" Background="White" Padding="2" BorderBrush="#755040" BorderThickness="3" FontFamily="Calibri" FontSize="18" Name="btnAdd" Margin="10" Width="200" Content="Добавить сотрудника" Cursor="Hand"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="1">
+            <ComboBox FontSize="20" SelectionChanged="Employee_SelectionChanged" Width="200" Margin="10" Name="Employee"/>
+            <ComboBox FontSize="20" Name="Parametr" SelectionChanged="Employee_SelectionChanged" Width="200" Margin="10">
+                <ComboBoxItem>Все</ComboBoxItem>
+                <ComboBoxItem>СНИЛС</ComboBoxItem>
+                <ComboBoxItem>ИНН</ComboBoxItem>
+                <ComboBoxItem>Номер телефона</ComboBoxItem>
+                <ComboBoxItem>Место регистрации</ComboBoxItem>
+                <ComboBoxItem>Серия паспорта</ComboBoxItem>
+                <ComboBoxItem>Номер паспорта</ComboBoxItem>
+                <ComboBoxItem>Наличие больничных</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <ListView Foreground="#000000" FontSize="20" Name="listEmployeesAll" HorizontalContentAlignment="Center" Grid.Row="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDEmployee}"/>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Surname}"/>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}"/>
+                    <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding DateBirth, StringFormat={}dd.MM.yyyy}"/>
+                    <GridViewColumn Header="Снилс" DisplayMemberBinding="{Binding Snils}"/>
+                    <GridViewColumn Header="ИНН" DisplayMemberBinding="{Binding Inn}"/>
+                    <GridViewColumn Header="Дата принятия на работу" DisplayMemberBinding="{Binding DateEmployment, StringFormat={}dd.MM.yyyy}"/>
+                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Number}"/>
+                    <GridViewColumn Header="Серия паспорта" DisplayMemberBinding="{Binding PassportTable.Series}"/>
+                    <GridViewColumn Header="Номер паспорта" DisplayMemberBinding="{Binding PassportTable.Number}"/>
+                    <GridViewColumn Header="Дата выдачи паспорта" DisplayMemberBinding="{Binding PassportTable.DateIssue, StringFormat={}dd.MM.yyyy}"/>
+                    <GridViewColumn Header="Код подразделения" DisplayMemberBinding="{Binding PassportTable.DivisionCode}"/>
+                    <GridViewColumn Header="Выдан" DisplayMemberBinding="{Binding PassportTable.Issued}"/>
+                    <GridViewColumn Header="Место регистрации" DisplayMemberBinding="{Binding PassportTable.PlaceRegistration}"/>
+                    <GridViewColumn Header="Серия документа об образовании" DisplayMemberBinding="{Binding DiplomaTable.Series}"/>
+                    <GridViewColumn Header="Номер документа об образовании" DisplayMemberBinding="{Binding DiplomaTable.Number}"/>
+                    <GridViewColumn Header="Дата выдачи документа об образовании" DisplayMemberBinding="{Binding DiplomaTable.DateIssue, StringFormat={}dd.MM.yyyy}"/>
+                    <GridViewColumn Header="Специальность" DisplayMemberBinding="{Binding DiplomaTable.Speciality}"/>
+                    <GridViewColumn Header="Образовательное учреждение" DisplayMemberBinding="{Binding DiplomaTable.Institution}"/>
+                    <GridViewColumn Header="Профиль" DisplayMemberBinding="{Binding DiplomaTable.Profile}"/>
+                    <GridViewColumn Header="Образование" DisplayMemberBinding="{Binding DiplomaTable.Education}"/>
+                    <GridViewColumn Header="Больничный" DisplayMemberBinding="{Binding SickLeave}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView Foreground="#000000"  FontSize="20" Name="listEmployeesSnils" Visibility="Collapsed" HorizontalContentAlignment="Center" Grid.Row="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDEmployee}"/>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Surname}"/>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}"/>
+                    <GridViewColumn Header="Снилс" DisplayMemberBinding="{Binding Snils}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView Foreground="#000000" FontSize="20" Name="listEmployeesInn" Visibility="Collapsed" HorizontalContentAlignment="Center" Grid.Row="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDEmployee}"/>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Surname}"/>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}"/>
+                    <GridViewColumn Header="ИНН" DisplayMemberBinding="{Binding Inn}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView Foreground="#000000" FontSize="20" Name="listEmployeesNumber" Visibility="Collapsed" HorizontalContentAlignment="Center" Grid.Row="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDEmployee}"/>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Surname}"/>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}"/>
+                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Number}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView Foreground="#000000" FontSize="20" Name="listEmployeesRegistration" Visibility="Collapsed" HorizontalContentAlignment="Center" Grid.Row="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDEmployee}"/>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Surname}"/>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}"/>
+                    <GridViewColumn Header="Место регистрации" DisplayMemberBinding="{Binding PassportTable.PlaceRegistration}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView Foreground="#000000" FontSize="20" Name="listEmployeesSeries" Visibility="Collapsed" HorizontalContentAlignment="Center" Grid.Row="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDEmployee}"/>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Surname}"/>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}"/>
+                    <GridViewColumn Header="Серия паспорта" DisplayMemberBinding="{Binding PassportTable.Series}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView Foreground="#000000" FontSize="20" Name="listEmployeesNumberPassport" Visibility="Collapsed" HorizontalContentAlignment="Center" Grid.Row="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDEmployee}"/>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Surname}"/>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}"/>
+                    <GridViewColumn Header="Номер паспорта" DisplayMemberBinding="{Binding PassportTable.Number}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView Foreground="#000000" FontSize="20" Name="listEmployeesSick" Visibility="Collapsed" HorizontalContentAlignment="Center" Grid.Row="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDEmployee}"/>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Surname}"/>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}"/>
+                    <GridViewColumn Header="Больничный" DisplayMemberBinding="{Binding SickLeave}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>
