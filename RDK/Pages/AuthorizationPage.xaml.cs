@@ -27,6 +27,7 @@ namespace RDK.Pages
 
         private void btnReg_Click(object sender, RoutedEventArgs e)
         {
+            Classes.DebugClass.diagWrite("Переход на страницу регистрации");
             Classes.FrameClass.frmMain.Navigate(new RegistrationPage());
         }
 
@@ -40,15 +41,18 @@ namespace RDK.Pages
                     LoginedTable logined = Classes.DataBaseClass.connect.LoginedTable.FirstOrDefault(x => x.Login == tbLogin.Text && x.Password == password);//строка для поиска объекта в базе данных по логину и паролю
                     if (logined != null)//если объект не нулевой то авторизация успешна
                     {
+                        Classes.DebugClass.diagWrite("Переход на главную страницу");
                         Classes.FrameClass.frmMain.Navigate(new MainPage());//переход к странице меню
                     }
                     else
                     {
+                        Classes.DebugClass.diagWrite("Ошибка входа");
                         MessageBox.Show("Такого пользователя не существует!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
-                catch 
+                catch (Exception ex)
                 {
+                    Classes.DebugClass.diagWrite(ex.Message);
                     MessageBox.Show("Ошибка!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 

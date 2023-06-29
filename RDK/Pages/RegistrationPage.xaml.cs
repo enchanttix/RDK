@@ -49,12 +49,12 @@ namespace RDK.Pages
                         DataBaseClass.connect.UserTable.Add(user);//добавляем новый объект в базу данных
                         DataBaseClass.connect.SaveChanges();//сохраняем изменения в базе данных
                         MessageBox.Show("Пользователь успешно зарегистрирован!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
-                        //Classes.DebugClass.diagWrite("Успешная регистрация\nПереход на страницу авторизации");
+                        Classes.DebugClass.diagWrite("Успешная регистрация. Переход на страницу авторизации");
                         FrameClass.frmMain.Navigate(new AuthorizationPage());//переходим на страницу авторизации
                     }
                     catch (Exception ex)
                     {
-                        //Classes.DebugClass.diagWrite(ex.Message);
+                        Classes.DebugClass.diagWrite(ex.Message);
                         MessageBox.Show("Ошибка!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
 

@@ -49,11 +49,12 @@ namespace RDK.Pages
                     };
                     DataBaseClass.connect.DiplomaTable.Add(diploma);
                     DataBaseClass.connect.SaveChanges();
+                    Classes.DebugClass.diagWrite("Полное добавление пользователя, переход на главную страницу");
                     Classes.FrameClass.frmMain.Navigate(new MainPage());
                 }
                 catch (Exception ex)
                 {
-                    //Classes.DebugClass.diagWrite(ex.Message);
+                    Classes.DebugClass.diagWrite(ex.Message);
                     MessageBox.Show("Ошибка!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 

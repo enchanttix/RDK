@@ -46,16 +46,19 @@ namespace RDK.Pages
         }
         private void btnEnd_Click(object sender, RoutedEventArgs e)
         {
+            Classes.DebugClass.diagWrite("Переход на страницу авторизации");
             Classes.FrameClass.frmMain.Navigate(new AuthorizationPage());
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
+            Classes.DebugClass.diagWrite("Переход на страницу добавления сотрудника");
             Classes.FrameClass.frmMain.Navigate(new AddEmployeePage());
         }
 
         private void btnAddList_Click(object sender, RoutedEventArgs e)
         {
+            Classes.DebugClass.diagWrite("Переход на страницу добовления больничного");
             Classes.FrameClass.frmMain.Navigate(new SickLeavePage());
         }
 

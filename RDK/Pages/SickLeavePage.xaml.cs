@@ -45,11 +45,12 @@ namespace RDK.Pages
                     };
                     DataBaseClass.connect.SickLeaveTable.Add(list);
                     DataBaseClass.connect.SaveChanges();
+                    Classes.DebugClass.diagWrite("Переход на главную страницу");
                     Classes.FrameClass.frmMain.Navigate(new MainPage());
                 }
                 catch (Exception ex)
                 {
-                    //Classes.DebugClass.diagWrite(ex.Message);
+                    Classes.DebugClass.diagWrite(ex.Message);
                     MessageBox.Show("Ошибка!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 

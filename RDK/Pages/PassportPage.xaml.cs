@@ -47,11 +47,12 @@ namespace RDK.Pages
                     };
                     DataBaseClass.connect.PassportTable.Add(passport);
                     DataBaseClass.connect.SaveChanges();
+                    Classes.DebugClass.diagWrite("Переход на страницу для ввода данных диплома");
                     Classes.FrameClass.frmMain.Navigate(new DiplomaPage(passport.IDEmployee));
                 }
                 catch (Exception ex)
                 {
-                    //Classes.DebugClass.diagWrite(ex.Message);
+                    Classes.DebugClass.diagWrite(ex.Message);
                     MessageBox.Show("Ошибка!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 

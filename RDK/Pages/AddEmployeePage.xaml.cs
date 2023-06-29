@@ -47,6 +47,7 @@ namespace RDK.Pages
                     };                   
                     DataBaseClass.connect.EmployeeTable.Add(employee);
                     DataBaseClass.connect.SaveChanges();
+                    Classes.DebugClass.diagWrite("Переход на страницу для ввода паспортных данных");
                     Classes.FrameClass.frmMain.Navigate(new PassportPage(employee.IDEmployee));
                 }
                 catch (Exception ex)

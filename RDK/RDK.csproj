@@ -66,6 +66,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\CheckFields.cs" />
     <Compile Include="Classes\DataBaseClass.cs" />
+    <Compile Include="Classes\DebugClass.cs" />
     <Compile Include="Classes\EmployeePartialClass.cs" />
     <Compile Include="Classes\FrameClass.cs" />
     <Compile Include="DiplomaTable.cs">
