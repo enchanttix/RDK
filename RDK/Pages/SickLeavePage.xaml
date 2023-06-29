@@ -10,7 +10,7 @@
 
     <Grid>
         <StackPanel VerticalAlignment="Center">
-            <TextBlock FontFamily="Calibri" Foreground="#755040" FontWeight="Bold" FontSize="26" HorizontalAlignment="Center" Text="Добовление больничного"/>
+            <TextBlock FontFamily="Calibri" Foreground="#755040" FontWeight="Bold" FontSize="26" HorizontalAlignment="Center" Text="Добавление больничного"/>
             <GroupBox Margin="0,10,0,0" FontFamily="Calibri" FontSize="20" Width="350" BorderBrush="#755040" BorderThickness="3" Header="Сотрудник">
                 <ComboBox Padding="2" Margin="5" Name="tbEmployee"/>
             </GroupBox>
