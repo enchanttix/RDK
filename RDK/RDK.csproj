@@ -186,6 +186,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="ClassDiagram1.cd" />
     <None Include="ModelDB.edmx.diagram">
       <DependentUpon>ModelDB.edmx</DependentUpon>
     </None>
